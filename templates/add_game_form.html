@@ -1,0 +1,90 @@
+<h1>Agregar Nuevo Juego</h1>
+
+<form action="/add_game" method="POST">
+
+    <!-- Título -->
+    <label for="Title">Title:</label>
+    <input type="text" name="Title" required>
+
+    <label for="Description">Description:</label>
+    <textarea name="Description" rows="3" required></textarea>
+
+    <label for="Release_Date">Release Date:</label>
+    <input type="date" name="Release_Date">
+
+    <label for="Developer">Developer:</label>
+    <input type="text" name="Developer" required>
+        
+    <!-- Publicador -->
+    <label for="Publisher">Publisher:</label>
+    <input type="text" name="Publisher">
+        
+    <!-- Multijugador -->
+    <label for="Multiplayer">Multiplayer?</label>
+    <select name="Multiplayer">
+        <option value="1">Yes</option>
+        <option value="0">No</option>
+    </select>
+        
+        <!-- Estado -->
+    <label for="State">State:</label>
+    <select name="State" required>
+        <option value="Played">Played</option>
+        <option value="Playing">Playing</option>
+        <option value="Backlog">Backlog</option>
+    </select>
+        
+    <!-- Fecha Agregado -->
+    <label for="Date_Added">Date Added:</label>
+    <input type="date" name="Date_Added">
+        
+    <!-- URL de la Imagen -->
+    <label for="Image_URL">Image URL:</label>
+    <input type="url" name="Image_URL">
+        
+    <!-- Logros -->
+    <label for="Achievements">Achievements?</label>
+    <select name="Achievements">
+        <option value="1">Yes</option>
+        <option value="0">No</option>
+    </select>
+        
+    <!-- Calificación -->
+    <label for="Rating">Rating (0-5):</label>
+    <input type="number" name="Rating" min="0" max="5" required>
+        
+    <!-- Reseña -->
+    <label for="Review">Review:</label>
+    <textarea name="Review" rows="4"></textarea>
+        
+    <!-- Tiempo Jugado -->
+    <label for="Time_Played">Time Played (HH:MM:SS):</label>
+    <input type="time" name="Time_Played" step="1">
+
+    <label>Genres:</label><br>
+    <input type="checkbox" name="Genres" value="Action"> Action<br>
+    <input type="checkbox" name="Genres" value="Adventure"> Adventure<br>
+    <input type="checkbox" name="Genres" value="RPG"> RPG<br>
+    <input type="checkbox" name="Genres" value="Simulation"> Simulation<br>
+    <input type="checkbox" name="Genres" value="Strategy"> Strategy<br>
+    <input type="checkbox" name="Genres" value="Sports"> Sports<br>
+
+    <label>Platforms:</label><br>
+    <input type="checkbox" name="Platforms" value="PC"> PC<br>
+    <input type="checkbox" name="Platforms" value="PS4"> PS4<br>
+    <input type="checkbox" name="Platforms" value="Xbox One"> Xbox One<br>
+    <input type="checkbox" name="Platforms" value="Switch"> Nintendo Switch<br>
+    <input type="checkbox" name="Platforms" value="Mobile"> Mobile<br>
+
+    <label for="Add_To">Add to:</label>
+    <select name="Add_To" required>
+        <option value="" disabled selected>Select an option</option>
+        <option value="wishlist">Wishlist</option>
+        <option value="library">Library</option>
+    </select>
+
+    <button type="submit">
+        Save
+    </button>
+
+</form>

@@ -1,0 +1,92 @@
+<h1>Edit Game</h1>
+    
+<form action="/update/{{ game[0] }}" method="POST">
+        
+    <!-- Título del juego -->
+    <label for="Title">Title:</label>
+    <input type="text" name="Title" placeholder="Title" value="{{ game[1] }}" required>
+
+    <!-- Descripción del juego -->
+    <label for="Description">Description:</label>
+    <textarea name="Description" placeholder="Description">{{ game[2] }}</textarea>
+
+    <!-- Fecha de lanzamiento -->
+    <label for="Release_Date">Release Date:</label>
+    <input type="date" name="Release_Date" value="{{ game[3] }}">
+
+    <!-- Desarrollador -->
+    <label for="Developer">Developer:</label>
+    <input type="text" name="Developer" placeholder="Developer" value="{{ game[4] }}">
+
+    <!-- Publicador -->
+    <label for="Publisher">Publisher:</label>
+    <input type="text" name="Publisher" placeholder="Publisher" value="{{ game[5] }}">
+
+    <!-- Multijugador -->
+    <label for="Multiplayer">Multiplayer:</label>
+    <select name="Multiplayer">
+        <option value="1" {% if game[6] %}selected{% endif %}>Yes</option>
+        <option value="0" {% if not game[6] %}selected{% endif %}>No</option>
+    </select>
+
+    <!-- Estado del juego -->
+    <label for="State">State:</label>
+    <select name="State">
+        <option value="Played" {% if game[7] == 'Played' %}selected{% endif %}>Played</option>
+        <option value="Playing" {% if game[7] == 'Playing' %}selected{% endif %}>Playing</option>
+        <option value="Backlog" {% if game[7] == 'Backlog' %}selected{% endif %}>Backlog</option>
+    </select>
+
+    <!-- Fecha en que se añadió el juego -->
+    <label for="Date_Added">Date Added:</label>
+    <input type="date" name="Date_Added" value="{{ game[8] }}">
+
+    <!-- URL de la imagen -->
+    <label for="Image_URL">Image URL:</label>
+    <input type="url" name="Image_URL" placeholder="Image URL" value="{{ game[9] }}">
+
+    <!-- Logros -->
+    <label for="Achievements">Achievements:</label>
+    <select name="Achievements">
+        <option value="1" {% if game[10] %}selected{% endif %}>Yes</option>
+        <option value="0" {% if not game[10] %}selected{% endif %}>No</option>
+    </select>
+
+    <!-- Calificación del juego -->
+    <label for="Rating">Rating (0-5):</label>
+    <input type="number" name="Rating" min="0" max="5" value="{{ game[11] }}">
+
+    <!-- Reseña -->
+    <label for="Review">Review:</label>
+    <textarea name="Review" placeholder="Review">{{ game[12] }}</textarea>
+
+    <!-- Tiempo jugado-->
+    <label for="Time_Played">Time Played (HH:MM:SS):</label>
+    <input type="time" name="Time_Played" step="1" value="{{ game[13] }}">
+
+    <label for="Genres">Genres:</label>
+    {% for genre in available_genres %}  
+        <input type="checkbox" name="Genres" value="{{ genre }}" 
+        {% if genre in game_genres %} checked {% endif %}>
+        {{ genre }}<br>
+    {% endfor %}
+
+    <!-- Plataformas -->
+    <label for="Platforms">Platforms:</label>
+    {% for platform in available_platforms %}  
+        <input type="checkbox" name="Platforms" value="{{ platform }}" 
+        {% if platform in game_platforms %} checked {% endif %}>
+        {{ platform }}<br>
+    {% endfor %}
+
+    <!-- Selección para wishlist o library -->
+    <label for="collection">Add to:</label>
+    <select name="collection">
+        <option value="library" {% if 'library' in current_collection %}selected{% endif %}>Library</option>
+        <option value="wishlist" {% if 'wishlist' in current_collection %}selected{% endif %}>Wishlist</option>
+    </select>
+
+
+    <!-- Botón para guardar los cambios -->
+    <button type="submit">Save</button>
+</form>

@@ -1,0 +1,75 @@
+
+<header>
+    <!-- Logo con enlace a index -->
+    <div class="logo">
+        <a href="/">
+            <img src="https://www.pngegg.com/es/search?q=logos" alt="Logo">
+        </a>
+    </div>
+
+    <!-- Botones de navegación -->
+    <div class="nav-buttons">
+        <a href="/">Home</a>
+        <a href="/add_game_form">Add Game</a>
+        <a href="/library/1">Library</a>
+        <a href="/wishlist/1">Wishlist</a>
+        <a href="/">Nose</a>
+        <a href="/">Profile</a>
+    </div>
+</header>
+
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+{% for message in messages %}
+    <p>{{message}}</p>
+{% endfor %}
+{% endif %}
+{% endwith %}
+
+<table>
+    <thead>
+        <tr>
+            <td>Title</td>
+            <td>Description</td>
+            <td>Release Date</td>
+            <td>Developer</td>
+            <td>Publisher</td>
+            <td>Genres</td>
+            <td>Platforms</td>
+            <td>Multiplayer</td>
+            <td>State</td>
+            <td>Date Added</td>
+            <td>Image URL</td>
+            <td>Achievements</td>
+            <td>Rating</td>
+            <td>Review</td>
+            <td>Time Played</td>
+            <td>Operations</td>
+        </tr>
+    </thead>
+    <tbody>
+        {% for game in games %}
+            <tr>
+                <td>{{ game[1] }}</td>
+                <td>{{ game[2] }}</td>
+                <td>{{ game[3] }}</td>
+                <td>{{ game[4] }}</td>
+                <td>{{ game[5] }}</td>
+                <td>{{ game_genres[game[0]] | join(", ") }}</td>  <!-- Mostrar géneros -->
+                <td>{{ game_platforms[game[0]] | join(", ") }}</td>  <!-- Mostrar plataformas -->
+                <td>{{ game[6] }}</td>
+                <td>{{ game[7] }}</td>
+                <td>{{ game[8] }}</td>
+                <td>{{ game[9] }}</td>
+                <td>{{ game[10] }}</td>
+                <td>{{ game[11] }}</td>
+                <td>{{ game[12] }}</td>
+                <td>{{ game[13] }}</td>
+                <td>
+                    <a href="/edit/{{ game[0] }}">Edit</a>
+                    <a href="/delete/{{ game[0] }}">Delete</a>
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
