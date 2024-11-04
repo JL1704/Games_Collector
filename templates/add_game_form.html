@@ -1,90 +1,135 @@
-<h1>Agregar Nuevo Juego</h1>
+{% extends 'layout.html' %}
+
+{% block body%}
+
+<h1>Add New Game</h1>
 
 <form action="/add_game" method="POST">
-
-    <!-- Título -->
-    <label for="Title">Title:</label>
-    <input type="text" name="Title" required>
-
-    <label for="Description">Description:</label>
-    <textarea name="Description" rows="3" required></textarea>
-
-    <label for="Release_Date">Release Date:</label>
-    <input type="date" name="Release_Date">
-
-    <label for="Developer">Developer:</label>
-    <input type="text" name="Developer" required>
-        
-    <!-- Publicador -->
-    <label for="Publisher">Publisher:</label>
-    <input type="text" name="Publisher">
-        
-    <!-- Multijugador -->
-    <label for="Multiplayer">Multiplayer?</label>
-    <select name="Multiplayer">
-        <option value="1">Yes</option>
-        <option value="0">No</option>
-    </select>
-        
+    <fieldset>
+        <legend>Game Information</legend>
+  
+        <!-- Título -->
+        <div class="mb-3">
+            <label for="Title" class="form-label">Title:</label>
+            <input type="text" name="Title" class="form-control" id="Title" required>
+        </div>
+    
+        <!-- Descripción -->
+        <div class="mb-3">
+            <label for="Description" class="form-label">Description:</label>
+            <textarea name="Description" class="form-control" id="Description" rows="3" required></textarea>
+        </div>
+    
+        <!-- Fecha de lanzamiento -->
+        <div class="mb-3">
+            <label for="Release_Date" class="form-label">Release Date:</label>
+            <input type="date" name="Release_Date" class="form-control" id="Release_Date">
+        </div>
+    
+        <!-- Desarrollador -->
+        <div class="mb-3">
+            <label for="Developer" class="form-label">Developer:</label>
+            <input type="text" name="Developer" class="form-control" id="Developer" required>
+        </div>
+    
+        <!-- Publicador -->
+        <div class="mb-3">
+            <label for="Publisher" class="form-label">Publisher:</label>
+            <input type="text" name="Publisher" class="form-control" id="Publisher">
+        </div>
+    
+        <!-- Multijugador -->
+        <div class="mb-3">
+            <label for="Multiplayer" class="form-label">Multiplayer?</label>
+            <select name="Multiplayer" class="form-select" id="Multiplayer">
+            <option value="1">Yes</option>
+            <option value="0">No</option>
+            </select>
+        </div>
+    
         <!-- Estado -->
-    <label for="State">State:</label>
-    <select name="State" required>
-        <option value="Played">Played</option>
-        <option value="Playing">Playing</option>
-        <option value="Backlog">Backlog</option>
-    </select>
-        
-    <!-- Fecha Agregado -->
-    <label for="Date_Added">Date Added:</label>
-    <input type="date" name="Date_Added">
-        
-    <!-- URL de la Imagen -->
-    <label for="Image_URL">Image URL:</label>
-    <input type="url" name="Image_URL">
-        
-    <!-- Logros -->
-    <label for="Achievements">Achievements?</label>
-    <select name="Achievements">
-        <option value="1">Yes</option>
-        <option value="0">No</option>
-    </select>
-        
-    <!-- Calificación -->
-    <label for="Rating">Rating (0-5):</label>
-    <input type="number" name="Rating" min="0" max="5" required>
-        
-    <!-- Reseña -->
-    <label for="Review">Review:</label>
-    <textarea name="Review" rows="4"></textarea>
-        
-    <!-- Tiempo Jugado -->
-    <label for="Time_Played">Time Played (HH:MM:SS):</label>
-    <input type="time" name="Time_Played" step="1">
+        <div class="mb-3">
+            <label for="State" class="form-label">State:</label>
+            <select name="State" class="form-select" id="State" required>
+            <option value="Played">Played</option>
+            <option value="Playing">Playing</option>
+            <option value="Backlog">Backlog</option>
+            </select>
+        </div>
+    
+        <!-- Fecha Agregado -->
+        <div class="mb-3">
+            <label for="Date_Added" class="form-label">Date Added:</label>
+            <input type="date" name="Date_Added" class="form-control" id="Date_Added">
+        </div>
+    
+        <!-- URL de la Imagen -->
+        <div class="mb-3">
+            <label for="Image_URL" class="form-label">Image URL:</label>
+            <input type="url" name="Image_URL" class="form-control" id="Image_URL">
+        </div>
+    
+        <!-- Logros -->
+        <div class="mb-3">
+            <label for="Achievements" class="form-label">Achievements?</label>
+            <select name="Achievements" class="form-select" id="Achievements">
+            <option value="1">Yes</option>
+            <option value="0">No</option>
+            </select>
+        </div>
+    
+        <!-- Calificación -->
+        <div class="mb-3">
+            <label for="Rating" class="form-label">Rating (0-5):</label>
+            <input type="number" name="Rating" class="form-control" id="Rating" min="0" max="5" required>
+        </div>
+    
+        <!-- Reseña -->
+        <div class="mb-3">
+            <label for="Review" class="form-label">Review:</label>
+            <textarea name="Review" class="form-control" id="Review" rows="4"></textarea>
+        </div>
+    
+        <!-- Tiempo Jugado -->
+        <div class="mb-3">
+            <label for="Time_Played" class="form-label">Time Played (HH:MM:SS):</label>
+            <input type="time" name="Time_Played" class="form-control" id="Time_Played" step="1">
+        </div>
+  
+        <div class="mb-3">
+            <label class="form-label">Genres:</label><br>
+            {% for genre in available_genres %}
+                <div class="form-check">
+                    <input type="checkbox" name="Genres" value="{{ genre }}" class="form-check-input" id="genre{{ genre }}">
+                    <label for="genre{{ genre }}" class="form-check-label">{{ genre }}</label>
+                </div>
+            {% endfor %}
+        </div>
+  
+        <!-- Plataformas -->
+        <div class="mb-3">
+            <label class="form-label">Platforms:</label><br>
+            {% for platform in available_platforms %}
+                <div class="form-check">
+                    <input type="checkbox" name="Platforms" value="{{ platform }}" class="form-check-input" id="platform{{ platform }}">
+                    <label for="platform{{ platform }}" class="form-check-label">{{ platform }}</label>
+                </div>
+            {% endfor %}
+        </div>
 
-    <label>Genres:</label><br>
-    <input type="checkbox" name="Genres" value="Action"> Action<br>
-    <input type="checkbox" name="Genres" value="Adventure"> Adventure<br>
-    <input type="checkbox" name="Genres" value="RPG"> RPG<br>
-    <input type="checkbox" name="Genres" value="Simulation"> Simulation<br>
-    <input type="checkbox" name="Genres" value="Strategy"> Strategy<br>
-    <input type="checkbox" name="Genres" value="Sports"> Sports<br>
-
-    <label>Platforms:</label><br>
-    <input type="checkbox" name="Platforms" value="PC"> PC<br>
-    <input type="checkbox" name="Platforms" value="PS4"> PS4<br>
-    <input type="checkbox" name="Platforms" value="Xbox One"> Xbox One<br>
-    <input type="checkbox" name="Platforms" value="Switch"> Nintendo Switch<br>
-    <input type="checkbox" name="Platforms" value="Mobile"> Mobile<br>
-
-    <label for="Add_To">Add to:</label>
-    <select name="Add_To" required>
-        <option value="" disabled selected>Select an option</option>
-        <option value="wishlist">Wishlist</option>
-        <option value="library">Library</option>
-    </select>
-
-    <button type="submit">
-        Save
-    </button>
-
+      <!-- Añadir a -->
+      <div class="mb-3">
+        <label for="Add_To" class="form-label">Add to:</label>
+        <select name="Add_To" class="form-select" id="Add_To" required>
+          <option value="" disabled selected>Select an option</option>
+          <option value="wishlist">Wishlist</option>
+          <option value="library">Library</option>
+        </select>
+      </div>
+  
+      <!-- Botón de enviar -->
+      <button type="submit" class="btn btn-primary">Save</button>
+    </fieldset>
 </form>
+  
+{% endblock %}

@@ -1,92 +1,132 @@
+{% extends 'layout.html' %}
+
+{% block body%}
+
 <h1>Edit Game</h1>
     
-<form action="/update/{{ game[0] }}" method="POST">
-        
+<form action="/update/{{ game[0] }}" method="POST" class="container mt-4">
+
     <!-- Título del juego -->
-    <label for="Title">Title:</label>
-    <input type="text" name="Title" placeholder="Title" value="{{ game[1] }}" required>
+    <div class="mb-3">
+        <label for="Title" class="form-label">Title:</label>
+        <input type="text" name="Title" class="form-control" placeholder="Title" value="{{ game[1] }}" required>
+    </div>
 
     <!-- Descripción del juego -->
-    <label for="Description">Description:</label>
-    <textarea name="Description" placeholder="Description">{{ game[2] }}</textarea>
+    <div class="mb-3">
+        <label for="Description" class="form-label">Description:</label>
+        <textarea name="Description" class="form-control" placeholder="Description" rows="3">{{ game[2] }}</textarea>
+    </div>
 
     <!-- Fecha de lanzamiento -->
-    <label for="Release_Date">Release Date:</label>
-    <input type="date" name="Release_Date" value="{{ game[3] }}">
+    <div class="mb-3">
+        <label for="Release_Date" class="form-label">Release Date:</label>
+        <input type="date" name="Release_Date" class="form-control" value="{{ game[3] }}">
+    </div>
 
     <!-- Desarrollador -->
-    <label for="Developer">Developer:</label>
-    <input type="text" name="Developer" placeholder="Developer" value="{{ game[4] }}">
+    <div class="mb-3">
+        <label for="Developer" class="form-label">Developer:</label>
+        <input type="text" name="Developer" class="form-control" placeholder="Developer" value="{{ game[4] }}">
+    </div>
 
     <!-- Publicador -->
-    <label for="Publisher">Publisher:</label>
-    <input type="text" name="Publisher" placeholder="Publisher" value="{{ game[5] }}">
+    <div class="mb-3">
+        <label for="Publisher" class="form-label">Publisher:</label>
+        <input type="text" name="Publisher" class="form-control" placeholder="Publisher" value="{{ game[5] }}">
+    </div>
 
     <!-- Multijugador -->
-    <label for="Multiplayer">Multiplayer:</label>
-    <select name="Multiplayer">
-        <option value="1" {% if game[6] %}selected{% endif %}>Yes</option>
-        <option value="0" {% if not game[6] %}selected{% endif %}>No</option>
-    </select>
+    <div class="mb-3">
+        <label for="Multiplayer" class="form-label">Multiplayer:</label>
+        <select name="Multiplayer" class="form-select">
+            <option value="1" {% if game[6] %}selected{% endif %}>Yes</option>
+            <option value="0" {% if not game[6] %}selected{% endif %}>No</option>
+        </select>
+    </div>
 
     <!-- Estado del juego -->
-    <label for="State">State:</label>
-    <select name="State">
-        <option value="Played" {% if game[7] == 'Played' %}selected{% endif %}>Played</option>
-        <option value="Playing" {% if game[7] == 'Playing' %}selected{% endif %}>Playing</option>
-        <option value="Backlog" {% if game[7] == 'Backlog' %}selected{% endif %}>Backlog</option>
-    </select>
+    <div class="mb-3">
+        <label for="State" class="form-label">State:</label>
+        <select name="State" class="form-select">
+            <option value="Played" {% if game[7] == 'Played' %}selected{% endif %}>Played</option>
+            <option value="Playing" {% if game[7] == 'Playing' %}selected{% endif %}>Playing</option>
+            <option value="Backlog" {% if game[7] == 'Backlog' %}selected{% endif %}>Backlog</option>
+        </select>
+    </div>
 
     <!-- Fecha en que se añadió el juego -->
-    <label for="Date_Added">Date Added:</label>
-    <input type="date" name="Date_Added" value="{{ game[8] }}">
+    <div class="mb-3">
+        <label for="Date_Added" class="form-label">Date Added:</label>
+        <input type="date" name="Date_Added" class="form-control" value="{{ game[8] }}">
+    </div>
 
     <!-- URL de la imagen -->
-    <label for="Image_URL">Image URL:</label>
-    <input type="url" name="Image_URL" placeholder="Image URL" value="{{ game[9] }}">
+    <div class="mb-3">
+        <label for="Image_URL" class="form-label">Image URL:</label>
+        <input type="url" name="Image_URL" class="form-control" placeholder="Image URL" value="{{ game[9] }}">
+    </div>
 
     <!-- Logros -->
-    <label for="Achievements">Achievements:</label>
-    <select name="Achievements">
-        <option value="1" {% if game[10] %}selected{% endif %}>Yes</option>
-        <option value="0" {% if not game[10] %}selected{% endif %}>No</option>
-    </select>
+    <div class="mb-3">
+        <label for="Achievements" class="form-label">Achievements:</label>
+        <select name="Achievements" class="form-select">
+            <option value="1" {% if game[10] %}selected{% endif %}>Yes</option>
+            <option value="0" {% if not game[10] %}selected{% endif %}>No</option>
+        </select>
+    </div>
 
     <!-- Calificación del juego -->
-    <label for="Rating">Rating (0-5):</label>
-    <input type="number" name="Rating" min="0" max="5" value="{{ game[11] }}">
+    <div class="mb-3">
+        <label for="Rating" class="form-label">Rating (0-5):</label>
+        <input type="number" name="Rating" class="form-control" min="0" max="5" value="{{ game[11] }}">
+    </div>
 
     <!-- Reseña -->
-    <label for="Review">Review:</label>
-    <textarea name="Review" placeholder="Review">{{ game[12] }}</textarea>
+    <div class="mb-3">
+        <label for="Review" class="form-label">Review:</label>
+        <textarea name="Review" class="form-control" placeholder="Review" rows="4">{{ game[12] }}</textarea>
+    </div>
 
-    <!-- Tiempo jugado-->
-    <label for="Time_Played">Time Played (HH:MM:SS):</label>
-    <input type="time" name="Time_Played" step="1" value="{{ game[13] }}">
+    <!-- Tiempo jugado -->
+    <div class="mb-3">
+        <label for="Time_Played" class="form-label">Time Played (HH:MM:SS):</label>
+        <input type="time" name="Time_Played" class="form-control" step="1" value="{{ game[13] }}">
+    </div>
 
-    <label for="Genres">Genres:</label>
-    {% for genre in available_genres %}  
-        <input type="checkbox" name="Genres" value="{{ genre }}" 
-        {% if genre in game_genres %} checked {% endif %}>
-        {{ genre }}<br>
-    {% endfor %}
+    <!-- Géneros -->
+    <div class="mb-3">
+        <label for="Genres" class="form-label">Genres:</label>
+        {% for genre in available_genres %}  
+            <div class="form-check">
+                <input type="checkbox" name="Genres" class="form-check-input" value="{{ genre }}" {% if genre in game_genres %} checked {% endif %}>
+                <label class="form-check-label">{{ genre }}</label>
+            </div>
+        {% endfor %}
+    </div>
 
     <!-- Plataformas -->
-    <label for="Platforms">Platforms:</label>
-    {% for platform in available_platforms %}  
-        <input type="checkbox" name="Platforms" value="{{ platform }}" 
-        {% if platform in game_platforms %} checked {% endif %}>
-        {{ platform }}<br>
-    {% endfor %}
+    <div class="mb-3">
+        <label for="Platforms" class="form-label">Platforms:</label>
+        {% for platform in available_platforms %}  
+            <div class="form-check">
+                <input type="checkbox" name="Platforms" class="form-check-input" value="{{ platform }}" {% if platform in game_platforms %} checked {% endif %}>
+                <label class="form-check-label">{{ platform }}</label>
+            </div>
+        {% endfor %}
+    </div>
 
-    <!-- Selección para wishlist o library -->
-    <label for="collection">Add to:</label>
-    <select name="collection">
-        <option value="library" {% if 'library' in current_collection %}selected{% endif %}>Library</option>
-        <option value="wishlist" {% if 'wishlist' in current_collection %}selected{% endif %}>Wishlist</option>
-    </select>
-
+    <!-- Wishlist o Library -->
+    <div class="mb-3">
+        <label for="collection" class="form-label">Add to:</label>
+        <select name="collection" class="form-select">
+            <option value="library" {% if 'library' in current_collection %}selected{% endif %}>Library</option>
+            <option value="wishlist" {% if 'wishlist' in current_collection %}selected{% endif %}>Wishlist</option>
+        </select>
+    </div>
 
     <!-- Botón para guardar los cambios -->
-    <button type="submit">Save</button>
+    <button type="submit" class="btn btn-primary">Save</button>
 </form>
+
+{% endblock %}

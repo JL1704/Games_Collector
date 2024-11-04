@@ -43,8 +43,10 @@ def Index():
 
 @app.route('/add_game_form')
 def add_game_form():
-    return render_template('add_game_form.html')
-
+    # Lista de plataformas disponibles
+    available_genres = ['Action', 'Adventure', 'RPG', 'Simulation', 'Strategy', 'Sports']
+    available_platforms = ['PC', 'PS4', 'Xbox', 'Nintendo Switch', 'Mobile']
+    return render_template('add_game_form.html', available_genres=available_genres, available_platforms=available_platforms)
 
 @app.route('/add_game', methods=['POST'])
 def add_game():
@@ -113,8 +115,12 @@ def add_game():
         # Confirmar y notificar al usuario
         mysql.connection.commit()
         flash('Game Added Successfully')
-        
+
     return redirect(url_for('Index'))
+
+    
+        
+
 
 @app.route('/edit/<id>')
 def get_game(id):

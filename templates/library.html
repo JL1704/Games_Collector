@@ -1,46 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Library</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 20px;
-        }
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-            gap: 10px;
-        }
-        .game-item {
-            position: relative;
-            cursor: pointer;
-        }
-        .game-item img {
-            width: 100%;
-            border-radius: 8px;
-            transition: transform 0.2s;
-        }
-        .game-item:hover img {
-            transform: scale(1.05);
-        }
-    </style>
-</head>
-<body>
+{% extends 'layout.html' %}
 
-    <h1>Your Library</h1>
-    <div class="grid">
-        {% for game in games %}
-            <div class="game-item" onclick="window.location.href='/edit/{{ game[0] }}'">  <!-- Cambia 'game[0]' por el índice que representa la ID del juego -->
-                <img src="{{ game[1] }}" alt="Game Image" style="width: 100%; height: auto;">
-            </div>
-        {% endfor %}
-    </div>
+{% block body%}
 
-</body>
-</html>
+<h1>Your Library</h1>
+<div class="grid">
+    {% for game in games %}
+        <div class="game-item" onclick="window.location.href='/edit/{{ game[0] }}'">  <!-- Cambia 'game[0]' por el índice que representa la ID del juego -->
+            <img src="{{ game[1] }}" alt="Game Image" style="width: 100%; height: auto;">
+        </div>
+    {% endfor %}
+</div>
 
-
+{% endblock %}
