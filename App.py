@@ -287,5 +287,55 @@ def wishlist(id):
     
     return render_template('wishlist.html', games=games)
 
+@app.route('/profile/<string:id>')
+def view_profile(id):
+    cur = mysql.connection.cursor()
+    
+    # Obtener juegos de la biblioteca del usuario actual usando el ID proporcionado
+    cur.execute('SELECT * FROM User WHERE Id_User = %s', (id,))
+    profile = cur.fetchone()
+    
+    return render_template('view_profile.html', profile=profile)
+
+@app.route('/edit_profile/<string:id>')
+def get_profile(id):
+    cur = mysql.connection.cursor()
+    
+    # Obtener juegos de la biblioteca del usuario actual usando el ID proporcionado
+    cur.execute('SELECT * FROM User WHERE Id_User = %s', (id,))
+    profile = cur.fetchone()
+    
+    return render_template('edit_profile.html', profile=profile)
+
+@app.route('/update_profile/<id>', methods=['POST'])  # POST también sirve para obtener datos del HTML
+def update_profile(id):
+    if request.method == 'POST':
+        # Obtener datos del formulario
+        Username = request.form['Username']
+        Biography = request.form['Biography']
+        email = request.form['email']
+        Avatar_URL = request.form['Avatar_URL']
+        #user_id = id
+        
+        # Actualizar datos en la base de datos
+        cur = mysql.connection.cursor()
+        cur.execute("""
+            UPDATE User
+            SET Username = %s,
+                Biography = %s,
+                email = %s,
+                Avatar_URL = %s
+            WHERE Id_User = %s
+        """, (
+            Username, Biography, email, Avatar_URL, id
+        ))
+
+    
+        # Confirmar cambios y notificar al usuario
+        mysql.connection.commit()
+        #flash('Game Updated Successfully')
+        
+    return redirect(url_for('Index'))
+
 if __name__ == '__main__':
     app.run(port= 3000, debug = True)
