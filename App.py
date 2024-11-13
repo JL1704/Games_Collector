@@ -1,14 +1,12 @@
 from flask import Flask, render_template, request, redirect, url_for, flash
 from flask_mysqldb import MySQL
-
-
 app = Flask(__name__)
 
 
 #MYSQL connection
-app.config['MYSQL_HOST'] = 'localhost'
-app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = 'basedatos'
+app.config['MYSQL_HOST'] = 'mysql'
+app.config['MYSQL_USER'] = 'miusuario'
+app.config['MYSQL_PASSWORD'] = 'pollito90@Locochon'
 app.config['MYSQL_DB'] = 'GamesCollector'
 mysql = MySQL(app)
 
