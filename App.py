@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for, flash
 from flask_mysqldb import MySQL
-app = Flask(__name__)
 
+app = Flask(__name__)
 
 #MYSQL connection
 app.config['MYSQL_HOST'] = 'mysql'
@@ -38,12 +38,12 @@ def Index():
 
     return render_template('index.html', games=games, game_genres=game_genres, game_platforms=game_platforms)
 
-
 @app.route('/add_game_form')
 def add_game_form():
     # Lista de plataformas disponibles
-    available_genres = ['Action', 'Adventure', 'RPG', 'Simulation', 'Strategy', 'Sports']
-    available_platforms = ['PC', 'PS4', 'Xbox', 'Nintendo Switch', 'Mobile']
+    available_genres = ['Action', 'Adventure', 'RPG', 'Simulation', 'Strategy', 'Sports', 'Horror', 'Puzzle', 'Fighting', 'Music', 'Racing', 'Platformer', 'Battle Royale', 'MMO', 'Stealth', 'Survival', 'Open World', 'Sandbox']
+    available_platforms = ['PC', 'PS4', 'Xbox One', 'Switch', 'Mobile', 'PS5', 'Xbox Series X', 'Xbox Series S', 'VR', '3DS', 'PS Vita', 'Nintendo DS', 'Web', 'Stadia', 'Amazon Luna']
+
     return render_template('add_game_form.html', available_genres=available_genres, available_platforms=available_platforms)
 
 @app.route('/add_game', methods=['POST'])
@@ -108,17 +108,12 @@ def add_game():
                 INSERT INTO Library (Id_User, Id_Game, Date_Added, Notes)
                 VALUES (%s, %s, %s, %s)
             ''', (user_id, game_id, Date_Added, ''))
-
-        
+    
         # Confirmar y notificar al usuario
         mysql.connection.commit()
         flash('Game Added Successfully')
 
     return redirect(url_for('Index'))
-
-    
-        
-
 
 @app.route('/edit/<id>')
 def get_game(id):
@@ -146,17 +141,15 @@ def get_game(id):
     # Determinar colección actual
     current_collection = 'library' if in_library else 'wishlist' if in_wishlist else ''
 
-
     # Obtener plataformas del juego
     cur.execute('SELECT Platform FROM Game_Platform WHERE Id_Game = %s', (id,))
     platforms = [row[0] for row in cur.fetchall()]
     
-    # Asegúrate de pasar las listas de géneros y plataformas disponibles a la plantilla
-    available_genres = ['Action', 'Adventure', 'RPG', 'Simulation', 'Strategy', 'Sports']  # Ejemplo de géneros disponibles
-    available_platforms = ['PC', 'PS4', 'Xbox One', 'Switch', 'Mobile']  # Ejemplo de plataformas disponibles
+    available_genres = ['Action', 'Adventure', 'RPG', 'Simulation', 'Strategy', 'Sports', 'Horror', 'Puzzle', 'Fighting', 'Music', 'Racing', 'Platformer', 'Battle Royale', 'MMO', 'Stealth', 'Survival', 'Open World', 'Sandbox']
+    available_platforms = ['PC', 'PS4', 'Xbox One', 'Switch', 'Mobile', 'PS5', 'Xbox Series X', 'Xbox Series S', 'VR', '3DS', 'PS Vita', 'Nintendo DS', 'Web', 'Stadia', 'Amazon Luna']
+
 
     return render_template('edit_game.html', game=data, game_genres=genres, game_platforms=platforms, available_genres=available_genres, available_platforms=available_platforms, current_collection=current_collection)
-
 
 @app.route('/update/<id>', methods=['POST'])  # POST también sirve para obtener datos del HTML
 def update_game(id):
@@ -334,6 +327,16 @@ def update_profile(id):
         #flash('Game Updated Successfully')
         
     return redirect(url_for('Index'))
+
+@app.route('/privacy-policy')
+def privacy_policy():
+    
+    return render_template('privacy-policy.html')
+
+@app.route('/terms')
+def terms():
+    
+    return render_template('terms.html')
 
 if __name__ == '__main__':
     app.run(port= 3000, debug = True)
