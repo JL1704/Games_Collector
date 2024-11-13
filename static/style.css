@@ -1,0 +1,222 @@
+:root {
+    --bg-color: #1c161e;
+    --text-color: #333;
+    --container-bg: #262329;
+    --input-bg: #4e4558;
+    --input-border: #5d506b;
+    --highlight-color: #6a4b9a;
+    --highlight-hover: #724ea8;
+    --navbar-color: #262329;
+    --navbar-text: #ecf0f1;
+    --navbar-hover: #6a4b9a;
+    --footer-text: #ecf0f1;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+}
+
+.container {
+    flex: 1;
+    margin-top: 2rem;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 10px;
+}
+
+.game-item {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    cursor: pointer;
+    aspect-ratio: 16 / 9;
+    background-color: #ccc;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s;
+}
+.game-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+}
+.game-item:hover img {
+    transform: scale(1.05);
+}
+.no-image-text {
+    color: #666;
+    font-size: 1rem;
+    text-align: center;
+}
+
+.navbar {
+    background-color: var(--navbar-color) !important;
+}
+.navbar .navbar-brand,
+.navbar .nav-link {
+    color: var(--navbar-text);
+}
+.navbar .nav-link:hover {
+    color: var(--navbar-hover);
+}
+
+.form-container {
+    background-color: var(--container-bg);
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 70%;
+    margin: 0 auto;
+    color: #ffffff;
+}
+.form-container ::placeholder{
+    color: #ffffff;
+}
+.form-container .profile-text {
+    background-color: var(--input-bg);
+    color: #ffffff;
+    padding: 10px;
+    border-radius: 4px;
+}
+.form-container .form-label {
+    color: #ffffff;
+    font-weight: bold;
+}
+
+.form-container .form-control,
+.form-container .form-select,
+.form-container .form-check-input {
+    background-color: var(--input-bg);
+    color: #ffffff;
+    border: 1px solid var(--input-border);
+    border-radius: 4px;
+}
+.form-container .form-control:focus,
+.form-container .form-select:focus {
+    background-color: var(--input-bg);
+    border-color: var(--input-border);
+    box-shadow: none;
+}
+
+.form-container .form-check-input {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+.form-container .form-check-label {
+    color: #ffffff;
+    font-weight: 500;
+}
+
+.form-container .btn-primary {
+    background-color: var(--highlight-color);
+    border-color: var(--highlight-hover);
+    color: #fff;
+    padding: 10px 20px;
+    font-weight: bold;
+    border-radius: 5px;
+}
+.form-container .btn-primary:hover {
+    background-color: var(--highlight-color);
+    border-color: var(--highlight-hover);
+}
+
+/* Estilos para mensajes de alerta personalizados */
+.alert-custom {
+    background-color: #2a2731;
+    color: #f0f0f0;
+    border-radius: 5px;
+    padding: 15px;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+.table-custom {
+    background-color: #2e2a36 !important;
+    color: #ffffff;
+    border-collapse: separate; /* Permite aplicar border-radius */
+    border-spacing: 0; /* Elimina el espacio entre celdas */
+    border-radius: 8px; /* Ajusta el radio de borde aquí */
+    overflow: hidden; /* Asegura que el redondeo se aplique bien */
+}
+
+.table-custom th {
+    background-color: #2e2a36 !important;
+    border-color: #4e4558;
+    color: #ffffff;
+    padding: 8px;
+}
+
+.table-custom td {
+    background-color: #4e4558 !important;
+    border-color: #ffffff;
+    color: #ffffff;
+    padding: 8px;
+}
+
+/* Bordes redondeados en las esquinas de la tabla */
+.table-custom tr:first-child th:first-child {
+    border-top-left-radius: 8px;
+}
+.table-custom tr:first-child th:last-child {
+    border-top-right-radius: 8px;
+}
+.table-custom tr:last-child td:first-child {
+    border-bottom-left-radius: 8px;
+}
+.table-custom tr:last-child td:last-child {
+    border-bottom-right-radius: 8px;
+}
+
+
+/* Botón personalizado */
+.btn-custom {
+    margin-bottom: 10px;
+    background-color: #6a4b9a !important;
+    border-color: #724ea8;
+    color: #fff;
+}
+
+.btn-custom:hover {
+    background-color: #a84ea4 !important;
+    border-color: #6a4b9a;
+}
+
+/* Botón Eliminar personalizado */
+.btn-delete {
+    background-color: #e74c3c;  /* Rojo (puedes cambiarlo por el color que prefieras) */
+    border-color: #c0392b;      /* Color del borde */
+    color: #fff;                /* Texto blanco */
+}
+
+.btn-delete:hover {
+    background-color: #c0392b;  /* Rojo más oscuro al pasar el cursor */
+    border-color: #e74c3c;      /* Color del borde al pasar el cursor */
+}
+
+
+
+footer {
+    background-color: var(--navbar-color);
+    color: var(--footer-text);
+    padding: 20px 0;
+    text-align: center;
+    margin-top: 20px;
+}
+footer a {
+    color: var(--highlight-color);
+    text-decoration: none;
+}
+footer a:hover {
+    color: var(--highlight-hover);
+}

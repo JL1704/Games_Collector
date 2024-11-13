@@ -4,46 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Games Collector</title>
+
+    <!-- Enlace a Bootstrap -->
     <link rel="stylesheet" href="https://bootswatch.com/5/flatly/bootstrap.min.css">
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            /*padding: 20px;*/
-        }
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-            gap: 10px;
-        }
-        .game-item {
-            position: relative;
-            cursor: pointer;
-        }
-        .game-item img {
-            width: 100%;
-            border-radius: 8px;
-            transition: transform 0.2s;
-        }
-        .game-item:hover img {
-            transform: scale(1.05);
-        }
-    </style>
+    
+    <!-- Enlace a tu archivo CSS personalizado -->
+    <link rel="stylesheet" href="/static/style.css">
 </head>
 <body>
 
     <nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
         <div class="container-fluid">
-          <a class="navbar-brand" href="/">GamesCollector</a>
+          <!-- Reemplazamos el texto "GamesCollector" con la imagen -->
+          <a class="navbar-brand" href="/">
+            <img src="/static/games-collector-icon.png" alt="Games Collector Logo" height="40">
+          </a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarColor01">
             <ul class="navbar-nav me-auto">
               <li class="nav-item">
-                <a class="nav-link active" href="/">Home
-                  <span class="visually-hidden">(current)</span>
-                </a>
+                <a class="nav-link" href="/">Home<span class="visually-hidden">(current)</span></a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="/add_game_form">Add Game</a>
@@ -58,37 +40,29 @@
                 <a class="nav-link" href="/profile/1">Profile</a>
               </li>
             </ul>
+            <!-- Imagen en el header -->
+            <img src="{% if request.path == '/' %}/static/home-icon.png
+                      {% elif request.path == '/add_game_form' %}/static/add-game-icon.png
+                      {% elif request.path.startswith('/edit') %}/static/edit-icon.png
+                      {% elif request.path.startswith('/library') %}/static/library-icon.png
+                      {% elif request.path.startswith('/wishlist') %}/static/wishlist-icon.png
+                      {% elif request.path.startswith('/profile') %}/static/profile-icon.png
+                      {% else %}/static/default-icon.png{% endif %}" alt="Page Icon" class="ms-auto" height="40">
           </div>
         </div>
-      </nav>
-
-<!---
-    <header>
-        <-- Logo con enlace a index --
-        <div class="logo">
-            <a href="/">
-                <img src="https://www.pngegg.com/es/search?q=logos" alt="Logo">
-            </a>
-        </div>
-    
-        !-- Botones de navegación --
-        <div class="nav-buttons">
-            <a href="/">Home</a>
-            <a href="/add_game_form">Add Game</a>
-            <a href="/library/1">Library</a>
-            <a href="/wishlist/1">Wishlist</a>
-            <a href="/">Nose</a>
-            <a href="/">Profile</a>
-        </div>
-    </header>-->
+    </nav>
 
     <div class="container">
-        {% block body %}
-
-        {% endblock%}
+        {% block body %}{% endblock %}
     </div>
-    
 
-    
+    <!-- Footer -->
+    <footer>
+      <div class="container">
+          <p>&copy; 2024 Games Collector | <a href="/privacy-policy">Privacy Policy</a> | <a href="/terms">Terms of Service</a></p>
+          <p>Follow us on <a href="https://twitter.com">Twitter</a> and <a href="https://facebook.com">Facebook</a></p>
+      </div>
+    </footer>
+
 </body>
 </html>

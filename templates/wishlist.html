@@ -2,12 +2,16 @@
 
 {% block body%}
 
-<h1>Your Wishlist</h1>
 <div class="grid">
-{% for game in games %}
-    <div class="game-item" onclick="window.location.href='/edit/{{ game[0] }}'">  <!-- Cambia 'game[0]' por el índice que representa la ID del juego -->
-        <img src="{{ game[1] }}" alt="Game Image" style="width: 100%; height: auto;">
-    </div>
-{% endfor %}
+    {% for game in games %}
+        <div class="game-item" onclick="window.location.href='/edit/{{ game[0] }}'">
+            {% if game[1] %}
+                <img src="{{ game[1] }}" alt="Game Image">
+            {% else %}
+                <div class="no-image-text">No Image Available</div>
+            {% endif %}
+        </div>
+    {% endfor %}
 </div>
+
 {% endblock %}

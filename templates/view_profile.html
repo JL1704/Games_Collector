@@ -2,38 +2,44 @@
 
 {% block body %}
 
-<div class="container mt-4">
-    <h1 class="mb-4">Profile</h1>
-    
-    <!-- Sección de username -->
-    <div class="mb-3">
-        <label class="form-label fw-bold">Username:</label>
-        <p class="form-control-plaintext border rounded p-2 bg-light">{{ profile[3] }}</p>
-    </div>
+<div class="form-container">
+    <div class="container mt-4">
+        <h1 class="form-label">Profile</h1>
 
-    <!-- Sección de biography -->
-    <div class="mb-3">
-        <label class="form-label fw-bold">Biography:</label>
-        <p class="form-control-plaintext border rounded p-2 bg-light">{{ profile[4] }}</p>
-    </div>
+        <!-- Sección de avatar (imagen en lugar del enlace) -->
+        <div class="mb-3 text-center">
+            <img src="{{ profile[5] }}" alt="Avatar" class="img-fluid rounded-circle" style="max-width: 150px; height: auto;">
+        </div>
 
-    <!-- Sección de email -->
-    <div class="mb-3">
-        <label class="form-label fw-bold">Email:</label>
-        <p class="form-control-plaintext border rounded p-2 bg-light">{{ profile[1] }}</p>
-    </div>
+        <!-- Sección de username -->
+        <div class="mb-3">
+            <label class="form-label fw-bold">Username:</label>
+            <p class="profile-text">{{ profile[3] }}</p>
+        </div>
 
-    <!-- Sección de avatar URL -->
-    <div class="mb-3">
-        <label class="form-label fw-bold">Avatar URL:</label>
-        <p class="form-control-plaintext border rounded p-2 bg-light">{{ profile[5] }}</p>
-    </div>
+        <!-- Sección de biography -->
+        <div class="mb-3">
+            <label class="form-label fw-bold">Biography:</label>
+            <p class="profile-text">{{ profile[4] }}</p>
+        </div>
 
-    <!-- Botón para editar perfil -->
-    <div class="text-center mt-4">
-        <a href="/edit_profile/1" class="btn btn-primary">Edit Profile</a>
-    </div>
+        <!-- Sección de email -->
+        <div class="mb-3">
+            <label class="form-label fw-bold">Email:</label>
+            <p class="profile-text">{{ profile[1] }}</p>
+        </div>
 
+        <!-- Sección de avatar URL -->
+        <div class="mb-3">
+            <label class="form-label fw-bold">Avatar URL:</label>
+            <p class="profile-text">{{ profile[5] }}</p>
+        </div>
+
+        <!-- Botón para editar perfil -->
+        <div class="text-center mt-4">
+            <a href="/edit_profile/1" class="btn btn-primary">Edit Profile</a>
+        </div>
+    </div>
 </div>
 
 {% endblock %}

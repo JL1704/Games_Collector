@@ -2,33 +2,33 @@
 
 {% block body%}
 
-<h1>Profile</h1>
-    
-<form action="/update_profile/{{ profile[0] }}" method="POST" class="container mt-4">
+<div class="form-container">  
+    <form action="/update_profile/{{ profile[0] }}" method="POST" class="container mt-4">
 
-    <div class="mb-3">
-        <label for="Username" class="form-label">Username:</label>
-        <input type="text" name="Username" class="form-control" placeholder="Username" value="{{ profile[3] }}" required>
-    </div>
+        <div class="mb-3">
+            <label for="Username" class="form-label">Username:</label>
+            <input type="text" name="Username" class="form-control" placeholder="Username" value="{{ profile[3] }}" required>
+        </div>
 
-    <div class="mb-3">
-        <label for="Biography" class="form-label">Biography:</label>
-        <textarea name="Biography" class="form-control" placeholder="Biography" rows="3">{{ profile[4] }}</textarea>
-    </div>
+        <div class="mb-3">
+            <label for="Biography" class="form-label">Biography:</label>
+            <textarea name="Biography" class="form-control" placeholder="Biography" rows="3">{{ profile[4] }}</textarea>
+        </div>
 
-    <div class="mb-3">
-        <label for="email" class="form-label">Email:</label>
-        <input type="text" name="email" class="form-control" placeholder="email" value="{{ profile[1] }}">
-    </div>
+        <div class="mb-3">
+            <label for="email" class="form-label">Email:</label>
+            <input type="text" name="email" class="form-control" placeholder="email" value="{{ profile[1] }}">
+        </div>
 
-    <!-- URL de la imagen -->
-    <div class="mb-3">
-        <label for="Avatar_URL" class="form-label">Avatar URL:</label>
-        <input type="url" name="Avatar_URL" class="form-control" placeholder="Avatar URL" value="{{ profile[5] }}">
-    </div>
+        <!-- URL de la imagen -->
+        <div class="mb-3">
+            <label for="Avatar_URL" class="form-label">Avatar URL:</label>
+            <input type="url" name="Avatar_URL" class="form-control" placeholder="Avatar URL" value="{{ profile[5] }}">
+        </div>
 
-    <!-- Botón para guardar los cambios -->
-    <button type="submit" class="btn btn-primary">Save</button>
-</form>
+        <!-- Botón para guardar los cambios -->
+        <button type="submit" class="btn btn-primary">Save</button>
+    </form>
+</div>
 
 {% endblock %}

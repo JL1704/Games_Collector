@@ -2,60 +2,68 @@
 
 {% block body%}
 
-{% with messages = get_flashed_messages() %}
-{% if messages %}
-{% for message in messages %}
-    <p>{{message}}</p>
-{% endfor %}
-{% endif %}
-{% endwith %}
+<div class="container mt-4">
+    <!-- Mostrar mensajes -->
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <div class="alert alert-custom"> <!-- Cambié a 'alert-custom' para usar el estilo personalizado -->
+                {% for message in messages %}
+                    <p>{{ message }}</p>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endwith %}
 
-<table class="table table-hover">
-    <thead>
-        <tr>
-            <th scope="col">Title</th>
-            <th scope="col">Description</th>
-            <th scope="col">Release Date</th>
-            <th scope="col">Developer</th>
-            <th scope="col">Publisher</th>
-            <th scope="col">Genres</th>
-            <th scope="col">Platforms</th>
-            <th scope="col">Multiplayer</th>
-            <th scope="col">State</th>
-            <th scope="col">Date Added</th>
-            <th scope="col">Image URL</th>
-            <th scope="col">Achievements</th>
-            <th scope="col">Rating</th>
-            <th scope="col">Review</th>
-            <th scope="col">Time Played</th>
-            <th scope="col">Operations</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for game in games %}
-            <tr>
-                <td>{{ game[1] }}</td>
-                <td>{{ game[2] }}</td>
-                <td>{{ game[3] }}</td>
-                <td>{{ game[4] }}</td>
-                <td>{{ game[5] }}</td>
-                <td>{{ game_genres[game[0]] | join(", ") }}</td>  <!-- Mostrar géneros -->
-                <td>{{ game_platforms[game[0]] | join(", ") }}</td>  <!-- Mostrar plataformas -->
-                <td>{{ game[6] }}</td>
-                <td>{{ game[7] }}</td>
-                <td>{{ game[8] }}</td>
-                <td>{{ game[9] }}</td>
-                <td>{{ game[10] }}</td>
-                <td>{{ game[11] }}</td>
-                <td>{{ game[12] }}</td>
-                <td>{{ game[13] }}</td>
-                <td>
-                    <a href="/edit/{{ game[0] }}">Edit</a>
-                    <a href="/delete/{{ game[0] }}">Delete</a>
-                </td>
-            </tr>
-        {% endfor %}
-    </tbody>
-</table>
+    <!-- Tabla responsive con estilos personalizados -->
+    <div class="table-responsive">
+        <table class="table table-hover table-custom"> <!-- Cambié a 'table-custom' para usar tu clase de fondo -->
+            <thead class="table-header"> <!-- Cambié a 'table-header' para el encabezado personalizado -->
+                <tr>
+                    <th scope="col">Title</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Release Date</th>
+                    <th scope="col">Developer</th>
+                    <th scope="col">Publisher</th>
+                    <th scope="col">Genres</th>
+                    <th scope="col">Platforms</th>
+                    <th scope="col">Multiplayer</th>
+                    <th scope="col">State</th>
+                    <th scope="col">Date Added</th>
+                    <th scope="col">Image URL</th>
+                    <th scope="col">Achievements</th>
+                    <th scope="col">Rating</th>
+                    <th scope="col">Review</th>
+                    <th scope="col">Time Played</th>
+                    <th scope="col">Operations</th>
+                </tr>
+            </thead>
+            <tbody class="table-body"> <!-- Cambié a 'table-body' para aplicar colores alternos a las filas -->
+                {% for game in games %}
+                    <tr>
+                        <td>{{ game[1] }}</td>
+                        <td>{{ game[2] }}</td>
+                        <td>{{ game[3] }}</td>
+                        <td>{{ game[4] }}</td>
+                        <td>{{ game[5] }}</td>
+                        <td>{{ game_genres[game[0]] | join(", ") }}</td>
+                        <td>{{ game_platforms[game[0]] | join(", ") }}</td>
+                        <td>{{ game[6] }}</td>
+                        <td>{{ game[7] }}</td>
+                        <td>{{ game[8] }}</td>
+                        <td>{{ game[9] }}</td>
+                        <td>{{ game[10] }}</td>
+                        <td>{{ game[11] }}</td>
+                        <td>{{ game[12] }}</td>
+                        <td>{{ game[13] }}</td>
+                        <td>
+                            <a href="/edit/{{ game[0] }}" class="btn btn-sm btn-custom">Edit</a> <!-- Botón personalizado -->
+                            <a href="/delete/{{ game[0] }}" class="btn btn-sm btn-delete">Delete</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
 
 {% endblock %}
